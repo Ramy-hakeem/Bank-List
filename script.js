@@ -29,3 +29,43 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+// Page Navigation
+document.querySelector(`.nav__links`).addEventListener(`click`, e => {
+  e.preventDefault();
+  if (e.target.classList.contains(`nav__link`)) {
+    const id = e.target.getAttribute(`href`);
+    document.querySelector(id).scrollIntoView({ behavior: `smooth` });
+  }
+});
+
+// const tabContainer = document.querySelector(`.operations__tab-container`);
+// tabContainer.addEventListener(`click`, e => {
+//   e.preventDefault();
+//   if (e.target.classList.contains(`operations__tab`)) {
+//     [...tabContainer.children].forEach(element => {
+//       element.classList.remove(`operations__tab--active`);
+//     });
+//     e.target.classList.add(`operations__tab--active`);
+//     [...tabContainer.nextElementSibling.children].forEach(ele => {
+//       ele.classList.remove(`operations__content--active`);
+//       console.log(e.target.dataset.tab);
+//       ele.classList.contains(`operations__content--${e.target.dataset.tab}`) &&
+//         ele.classList.add(`operations__content--active`);
+//     });
+//   }
+// });
+const tabsContainer = document.querySelector(`.operations__tab-container`);
+const tabs = document.querySelectorAll(`.operations__tab`);
+const tabsContent = document.querySelectorAll(`.operations__content`);
+tabsContainer.addEventListener(`click`, e => {
+  const clicked = e.target.closest(`.operations__tab`);
+  console.log(clicked);
+  console.log(tabs);
+  if (clicked) {
+    tabs.forEach(element => {
+      element.classList.remove(`operations__tab--active`);
+    });
+    clicked.classList.add(`operations__tab--active`);
+  }
+});
