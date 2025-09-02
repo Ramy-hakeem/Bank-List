@@ -313,16 +313,26 @@ h4 {
 .operations__tab--active {
   transform: translateY(-66%);
 }
-
+.operations__content-container {
+  position: relative;
+}
 .operations__content {
-  display: none;
-
-  /* JUST PRESENTATIONAL */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease-in;
   font-size: 1.7rem;
   padding: 2.5rem 7rem 6.5rem 7rem;
 }
 
 .operations__content--active {
+  position: static;
+  opacity: 1;
+  pointer-events: auto;
   display: grid;
   grid-template-columns: 7rem 1fr;
   column-gap: 3rem;
