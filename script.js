@@ -13,6 +13,7 @@ const tabsContent = document.querySelectorAll(`.operations__content`);
 const header = document.querySelector(`.header`);
 const nav = document.querySelector(`.nav`);
 const section1 = document.querySelector(`#section--1`);
+const allSections = document.querySelectorAll('.section');
 
 const openModal = function () {
   modal.classList.remove('hidden');
@@ -87,3 +88,20 @@ const headerObserver = new IntersectionObserver(stickyNav, {
   rootMargin: -nav.getBoundingClientRect().height + 'px',
 });
 headerObserver.observe(header);
+
+// reveal the section on scroll
+function revelSection(entries, observer) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.remove('section--hidden');
+    observer.unobserve(entry.target);
+  });
+}
+const sectionObserver = new IntersectionObserver(revelSection, {
+  root: null,
+  threshold: 0.15,
+});
+allSections.forEach(section => {
+  section.classList.add('section--hidden');
+  sectionObserver.observe(section);
+});
