@@ -6,7 +6,6 @@ export default function revealEvent() {
   // FUNCTIONS
   function revelSection(entries, observer) {
     entries.forEach(entry => {
-      console.log(entry.isIntersecting);
       if (!entry.isIntersecting) return;
       entry.target.classList.remove('section--hidden');
       observer.unobserve(entry.target);
